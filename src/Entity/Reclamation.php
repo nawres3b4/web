@@ -22,8 +22,7 @@ class Reclamation
     #[ORM\ManyToOne(inversedBy: 'reclamations')]
     private ?User $User = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
-    private ?Type $Type = null;
+   
 
     public function getId(): ?int
     {
@@ -54,15 +53,5 @@ class Reclamation
         return $this;
     }
 
-    public function getType(): ?Type
-    {
-        return $this->Type;
-    }
-
-    public function setType(?Type $Type): self
-    {
-        $this->Type = $Type;
-
-        return $this;
-    }
+   
 }
