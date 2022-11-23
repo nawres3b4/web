@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Salaire index{% endblock %}
+
+{% block body %}
+    <h1>votre historique  de paiment </h1>
+
+    <table id="datatablesSimple" border=2 class="table">
+        <thead>
+            <tr>
+                <th>Id_Employé</th>
+                 <th>Nom</th>
+                 <th>prenom</th>
+                <th>Date_salaire</th>
+                <th>Mois</th>
+                <th>Montant</th>
+                <th>Heures_travail</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for salaire in salaires %}
+            <tr>
+                <td>{{salaire.User.id|default('Your default value here')}}</td>
+                <td>{{salaire.User.getNomUser|default('Your default value here')}}</td>
+                <td>{{salaire.User.getPrenomUser|default('Your default value here')}}</td>
+                <td>{{ salaire.dateSalaire ? salaire.dateSalaire|date('Y-m-d') : '' }}</td>
+                <td>{{ salaire.mois }}</td>
+                <td>{{ salaire.montant }}</td>
+                <td>{{ salaire.heuresTravail }}</td> 
+                 
+                 
+                <td>
+                    <a href="{{ path('app_salaire_showF', {'id': salaire.id}) }}">detail</a>
+                    
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+
+   
+{% endblock %}
